@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Générateur de lien d'anniversaire</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Souhaitez un Joyeux Anniversaire !</h1>
+        <form id="generate-link-form">
+            <label for="name">Entrez le nom de la personne :</label>
+            <input type="text" id="name" placeholder="Nom">
+            <button type="submit">Générer le lien</button>
+        </form>
+
+        <div id="link-container" style="display:none;">
+            <p>Partagez ce lien :</p>
+            <a id="generated-link" href="#" target="_blank"></a>
+        </div>
+        
+        <div id="navigate-to-index" style="display:none;">
+            <p><a id="go-to-index" href="index.html">Cliquez ici pour aller à la page de souhaits d'anniversaire.</a></p>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('generate-link-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const name = document.getElementById('name').value;
+            if (name) {
+                const link = `https://github.com/index.html?name=${encodeURIComponent(name)}`;
+                document.getElementById('generated-link').href = link;
+                document.getElementById('generated-link').textContent = link;
+                document.getElementById('link-container').style.display = 'block';
+                
+                // Afficher le lien pour naviguer vers index.html
+                document.getElementById('navigate-to-index').style.display = 'block';
+            }
+        });
+    </script>
+</body>
+</html>

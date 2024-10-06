@@ -1,3 +1,4 @@
+/* Styles de base */
 body {
     font-family: Arial, sans-serif;
     text-align: center;
@@ -22,8 +23,25 @@ body {
 #header-message h1 {
     font-size: 3em;
     color: #008d09;
-    opacity: 0;  /* Masqué au départ */
-    transition: opacity 2s ease-in-out;
+    opacity: 0;  /* Assurez-vous qu'il est visible */
+    transform: scale(1);  /* Réduire la taille au départ */
+    transition: opacity 2s ease-in-out, transform 1.5s ease-in-out;
+}
+
+#header-message h1.show {
+    opacity: 1;  /* Rendre visible */
+    transform: scale(1);  /* Zoomer à la taille normale */
+    animation: zoomInOut 5s ease-in-out infinite;  /* Animation infinie */
+}
+
+/* Définir les étapes de l'animation avec @keyframes */
+@keyframes zoomInOut {
+    0%, 100% {
+        transform: scale(1);  /* Taille normale au début et à la fin */
+    }
+    50% {
+        transform: scale(0.8);  /* Réduit au milieu */
+    }
 }
 
 .dialog {
@@ -31,6 +49,7 @@ body {
     color: white;
     padding: 20px;
     border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
 #name-reveal-container {
@@ -66,4 +85,41 @@ body {
     color: rgb(110, 0, 0);
     opacity: 0;
     transition: opacity 2s ease-in-out;
+}
+
+button {
+    padding: 10px 20px;
+    margin: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #008d09;
+    color: white;
+    font-size: 1em;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #005a04;
+}
+
+/* Media query pour les téléphones Android */
+@media screen and (max-width: 480px) {
+    #header-message h1 {
+        font-size: 2em;  /* Réduit la taille du texte pour les petits écrans */
+    }
+
+    .letter {
+        font-size: 40px;  /* Réduit la taille des lettres */
+        width: 40px;  /* Réduit la largeur pour s'adapter */
+    }
+
+    #footer-message p {
+        font-size: 1em;  /* Réduit la taille du texte dans le pied de page */
+    }
+
+    button {
+        font-size: 0.9em;  /* Ajuste la taille du bouton */
+        padding: 8px 16px;  /* Ajuste le remplissage du bouton */
+    }
 }

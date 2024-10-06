@@ -19,11 +19,12 @@ document.addEventListener("DOMContentLoaded", () => {
     const bibleVerse = document.getElementById('bible-verse');
 
     // Musique
-    let music1 = new Audio('Happiest_Year_Of_My_Life__Afro_Mara__-_Dj_Omo_Ebira__Full_TikTok_Version_(360p).mp4');  // Première musique (remplace 'path_to_first_music.mp3' par le chemin de ton fichier audio)
-    let music2 = new Audio('Happy_Birthday(136).mp4');  // Deuxième musique (remplace 'path_to_second_music.mp3' par le chemin de ton fichier audio)
+    let music1 = new Audio('assets/countdown-boom-76577.mp3');  // Première musique (remplace 'path_to_first_music.mp3' par le chemin de ton fichier audio)
+    let music2 = new Audio('assets/Happy_Birthday(136).mp4');  // Deuxième musique (remplace 'path_to_second_music.mp3' par le chemin de ton fichier audio)
 
     // Demande à l'utilisateur d'entrer son nom via une boîte de dialogue
-    const userName = prompt("Entrez votre nom");
+    const urlParams = new URLSearchParams(window.location.search);
+    const userName = urlParams.get('name');
     
     // Tableau qui stockera les éléments <span> représentant chaque lettre du nom
     const letterFields = [];
@@ -78,6 +79,10 @@ document.addEventListener("DOMContentLoaded", () => {
                 setTimeout(() => {
                     footerMessage.style.visibility = 'visible';  // Rendre visible le message du bas
                     joyeuxAnniversaire.style.opacity = '1';  // Affiche le texte "Joyeux Anniversaire"
+
+                    setTimeout(() => {
+                        document.querySelector('#header-message h1').classList.add('show');
+                    }, 2000);  // Ajoute un délai de 2 secondes avant de commencer l'animation
                     
                     // Affiche un verset biblique avec un délai supplémentaire de 1 seconde
                     setTimeout(() => {
@@ -111,8 +116,8 @@ document.addEventListener("DOMContentLoaded", () => {
         revealNextLetter();  // Démarre la révélation du nom en appelant la première lettre
     }
 
-    // Écouteur d'événement pour le bouton "Oui", déclenche la révélation du nom
-    document.getElementById('yes-btn').addEventListener('click', () => {
+    // Fonction à exécuter lors du clic ou de l'appui sur Entrée
+    const handleAction = () => {
         dialogBox.style.display = 'none';  // Cache la boîte de dialogue initiale
         music1.play();  // Joue la première musique
         createLetterFields(userName);  // Crée les champs pour chaque lettre du nom
@@ -122,7 +127,18 @@ document.addEventListener("DOMContentLoaded", () => {
         setTimeout(() => {
             revealName(userName);
         }, 3000);
+    };
+
+    // Écoute l'événement de clic sur le bouton
+    document.getElementById('yes-btn').addEventListener('click', handleAction);
+
+    // Écoute l'événement de pression de touche sur le document
+    document.addEventListener('keydown', (event) => {
+        if (event.key === 'Enter') {  // Vérifie si la touche appuyée est "Entrée"
+            handleAction();
+        }
     });
+
 
     // Écouteur d'événement pour le bouton "Non", qui cache simplement la boîte de dialogue
     document.getElementById('no-btn').addEventListener('click', () => {
@@ -132,10 +148,15 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     // Si l'utilisateur a entré un nom, on affiche la boîte de dialogue pour démarrer le processus
-    if (userName && userName.trim() !== '') {
-        dialogBox.style.display = 'block';  // Affiche la boîte de dialogue avec les options Oui / Non
-    } else {
-        footerMessage.textContent = "Aucun nom n'a été saisi.";  // Message si l'utilisateur n'entre pas de nom
-        footerMessage.style.visibility = 'visible';  // Affiche le message d'erreur au bas de la page
+    function checkUserName(userName) {
+        if (userName && userName.trim() !== '') {
+            dialogBox.style.display = 'block';  // Affiche la boîte de dialogue avec les options Oui / Non
+        } else {
+            footerMessage.textContent = "Aucun nom n'a été saisi.";  // Message si l'utilisateur n'entre pas de nom
+            footerMessage.style.visibility = 'visible';  // Affiche le message d'erreur au bas de la page
+    
+            // Optionnel : Terminer le programme ici
+            return;  // Fin de la fonction
+        }
     }
 });
