@@ -3,31 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Surprise Anniversaire</title>
+    <title>Générateur de lien d'anniversaire</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- Ajout du message "Joyeux Anniversaire" en haut comme header -->
-    <header id="header-message">
-        <h1 id="joyeux-anniversaire" class="hidden">🎉 Joyeux 🎂 Anniversaire! 🎉</h1>
-    </header>
+    <div class="container">
+        <h1>Souhaitez un Joyeux Anniversaire !</h1>
+        <form id="generate-link-form">
+            <label for="name">Entrez le nom de la personne :</label>
+            <input type="text" id="name" placeholder="Nom">
+            <button type="submit">Générer le lien</button>
+        </form>
 
-    <div id="dialog-box" class="dialog">
-        <p>Welcome, you were just waiting for you!</p>
-        <button id="yes-btn">Oui</button>
-        <button id="no-btn">Non</button>
-    </div>
- 
-    <!-- Zone d'affichage du nom en arrière-plan -->
-    <div id="name-reveal-container">
-        <!-- Les champs des lettres seront créés dynamiquement selon la longueur du nom -->
-    </div>
-
-    <!-- Message en bas -->
-    <div id="footer-message" class="hidden">
-        <p id="bible-verse">🥳 " Que le Seigneur te bénisse et te garde." 🥂</p> 
+        <div id="link-container" style="display:none;">
+            <p>Partagez ce lien :</p>
+            <a id="generated-link" href="#" target="_blank"></a>
+        </div>
+        
+        <div id="navigate-to-index" style="display:none;">
+            <p><a id="go-to-index" href="birthday.html">Cliquez ici pour aller à la page de souhaits d'anniversaire.</a></p>
+        </div>
     </div>
 
-    <script src="app.js"></script>
+    <script>
+        document.getElementById('generate-link-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const name = document.getElementById('name').value;
+            if (name) {
+                const link = `https://asaph-d.github.io/BirthDay/birthday.html?name=${encodeURIComponent(name)}`;
+                document.getElementById('generated-link').href = link;
+                document.getElementById('generated-link').textContent = link;
+                document.getElementById('link-container').style.display = 'block';
+                
+                // Afficher le lien pour naviguer vers index.html
+                document.getElementById('navigate-to-index').style.display = 'block';
+            }
+        });
+    </script>
 </body>
 </html>

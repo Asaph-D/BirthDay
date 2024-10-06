@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Surprise Anniversaire</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Ajout du message "Joyeux Anniversaire" en haut comme header -->
+    <header id="header-message">
+        <h1 id="joyeux-anniversaire" class="hidden">🎉 Joyeux 🎂 Anniversaire! 🎉</h1>
+    </header>
+
+    <div id="dialog-box" class="dialog">
+        <p>Welcome, you were just waiting for you!</p>
+        <button id="yes-btn">Oui</button>
+        <button id="no-btn">Non</button>
+    </div>
+ 
+    <!-- Zone d'affichage du nom en arrière-plan -->
+    <div id="name-reveal-container">
+        <!-- Les champs des lettres seront créés dynamiquement selon la longueur du nom -->
+    </div>
+
+    <!-- Message en bas -->
+    <div id="footer-message" class="hidden">
+        <p id="bible-verse">🥳 " Que le Seigneur te bénisse et te garde." 🥂</p> 
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
