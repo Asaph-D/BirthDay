@@ -24,10 +24,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Demande à l'utilisateur d'entrer son nom via une boîte de dialogue
     
-    // const urlParams = new URLSearchParams(window.location.search);
-    // const userName = urlParams.get('name');
+    const urlParams = new URLSearchParams(window.location.search);
+    const userName = urlParams.get('name');
     
-    const userName = prompt("Entrez votre nom");
+    // const userName = prompt("Entrez votre nom");
 
     // Tableau qui stockera les éléments <span> représentant chaque lettre du nom
     const letterFields = [];
