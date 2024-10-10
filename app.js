@@ -1,7 +1,7 @@
 // Lorsque le document est complètement chargé, exécuter ce bloc de code
 document.addEventListener("DOMContentLoaded", () => {
     // Alphabet utilisé pour le défilement des lettres, y compris les chiffres et l'espace
-    const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ -1234567890ÂÉÈÊÔ";
     
     // Référence à l'élément HTML qui contient la boîte de dialogue pour poser la question à l'utilisateur
     const dialogBox = document.getElementById('dialog-box');
@@ -19,13 +19,16 @@ document.addEventListener("DOMContentLoaded", () => {
     const bibleVerse = document.getElementById('bible-verse');
 
     // Musique
-    let music1 = new Audio('assets/countdown-boom-76577.mp3');  // Première musique (remplace 'path_to_first_music.mp3' par le chemin de ton fichier audio)
+    let music1 = new Audio('assets/Happiest_Year_Of_My_Life__Afro_Mara__-_Dj_Omo_Ebira__Full_TikTok_Version_(360p).mp4');  // Première musique (remplace 'path_to_first_music.mp3' par le chemin de ton fichier audio)
     let music2 = new Audio('assets/Happy_Birthday(136).mp4');  // Deuxième musique (remplace 'path_to_second_music.mp3' par le chemin de ton fichier audio)
 
     // Demande à l'utilisateur d'entrer son nom via une boîte de dialogue
-    const urlParams = new URLSearchParams(window.location.search);
-    const userName = urlParams.get('name');
     
+    // const urlParams = new URLSearchParams(window.location.search);
+    // const userName = urlParams.get('name');
+    
+    const userName = prompt("Entrez votre nom");
+
     // Tableau qui stockera les éléments <span> représentant chaque lettre du nom
     const letterFields = [];
     
@@ -114,7 +117,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         revealNextLetter();  // Démarre la révélation du nom en appelant la première lettre
-    }
+    } 
 
     // Fonction à exécuter lors du clic ou de l'appui sur Entrée
     const handleAction = () => {
